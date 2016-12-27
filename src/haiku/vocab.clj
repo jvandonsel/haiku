@@ -36,16 +36,16 @@
 ;; Singular nouns
 (def nouns-s-map {
                   1 ["drive" "pod" "floor" "zone" "spring" "thing" "bin" "tray" "cell" "path" "beer" "star" "leaf" "bird" "tree"
-                    "noise" "sound" "light" "rain" "ghost" "screen" "sun" "moon" "day" "night" "crow" "man" "friend" "gift" "truck"
+                     "noise" "sound" "light" "rain" "ghost" "screen" "sun" "moon" "day" "night" "crow" "man" "friend" "gift" "truck"
                      "phone" "wire" "iPad" "tablet" "badge" "face" "file" "house" "rock" "box" "dog" "cat" "time" "cart" "dove" "glove"
-                     "shelf" "bug" "team" "dev" "queue" "Mac" "hand" "aisle" "girl" "boy" "plan"]
+                     "shelf" "bug" "team" "dev" "queue" "Mac" "hand" "aisle" "girl" "boy" "plan" "fire"]
                   2 ["robot" "robot" "station" "warehouse" "order" "human" "product" "winter" "summer" "autumn" "picker" "stower" "neighbor"
                      "window" "silence" "apple" "FC" "child" "mirror" "insect" "water"  "service" "server" "zombie" "woman" "person" "sunset"
                      "flower" "poem" "monkey" "eagle" "surprise" "button" "event" "finger" "machine" "resource" "function" "Kindle" "program"
                      "model" "virus" "query" "echo" "image" "system" "carton" "movie" "building" "pallet" "garden" "TT" "pipeline" "present"
-                     "coffee" "sticker" "barcode" "laptop" "website" "cable"]
+                     "coffee" "sticker" "barcode" "laptop" "website" "cable" "worker" "ASIN" "matrix" "scanner" "spirit"]
                   3 ["battery" "computer" "activity" "database" "customer" "conveyor" "mezzanine" "MMA" "manager" "programmer" "factory" "family" "video"
-                    "obstacle" "obstruction" "terminal" "restriction" "area" "datacenter" "company"]
+                     "obstacle" "obstruction" "terminal" "restriction" "area" "datacenter" "company"]
                   4 ["operator" "fiducial" "associate"]
                   })
 (def nouns-s (flatten (vals nouns-s-map)))
@@ -53,16 +53,16 @@
 ;; Singular intransitive verbs
 (def verbs-s-intrans-map {
                           1 ["picks" "stows" "waits" "hides" "stores" "rests" "jumps" "weeps" "howls" "screams" "beeps" "dies" "plays" "hums" "moves" "charges"
-                           "blinks" "sings" "stops" "spins" "drifts" "sits" "glides"  "drives" "walks" "stands" "starves"]
+                             "blinks" "sings" "stops" "spins" "drifts" "sits" "glides"  "drives" "walks" "stands" "starves"]
                           2 ["listens" "enters" "watches" "twinkles" "echoes" "glimmers" "reboots" "travels" "rotates" "dances" "queues up" "crashes"]
                           3 ["navigates" "recovers" "emerges" ]
                           4 ["equalizes"]
                           })
 (def verbs-s-intrans (flatten (vals verbs-s-intrans-map)))
 
-;; Singular transitive verbs
+;; singular transitive verbs
 (def verbs-s-trans-map {1 ["picks" "brings" "stows" "eats" "runs" "stores" "finds" "searches for" "hears" "sees" "loves" "hates" "breaks" "drinks" "counts"
-                         "inspects" "takes" "ships" "scans" "builds" "senses" "lifts" "has" "maps" "tracks" "sends" "plans" "tests" "blocks"]
+                           "inspects" "takes" "ships" "scans" "builds" "senses" "lifts" "has" "maps" "tracks" "sends" "plans" "tests" "blocks" "seeks"]
                         2 ["orders" "awaits" "gathers"  "reboots" "pushes" "commands" "rejects" "carries" "controls" "restricts" "constructs" "designs"
                            "programs" "accesses" "infects" "reflects" "supports" "smells like" "programs" "touches" "obstructs" "queries"
                            "digs out"]
@@ -87,7 +87,7 @@
 ;; (Is there a real name for this part of speech?)
 (def singleton-nouns-map {1 ["Jeff" "work" "Ops" "the wind" "snow" "air" "code"]
                           2 ["daylight" "hardware" "software" "data" "sunshine" "sunlight" "storage" "the Web" "AR" "QA" "money"
-                             "Java" "Apple" "Bezos" "Kiva" "dunnage" "FedEx" "music" "Kobra"]
+                             "Java" "Apple" "Bezos" "Kiva" "dunnage" "FedEx" "music" "Kobra" "A-*"]
                           3 ["Amazon" "amnesty" "Apollo" "Brazil" "Seattle"]
                           4 ["inventory" "America" "the Internet" "security" ]
                           } )
@@ -96,34 +96,36 @@
 
 ;; Irregular singlar->plurals for both nouns and verbs
 ;; TODO: when pluralized, some of these words change their syllable count.
-(def irregular-plurals {"battery" "batteries"
-                        "watches" "watch"
-                        "leaf" "leaves"
-                        "searches for" "search for"
-                        "pushes" "push"
-                        "child" "children"
-                        "man" "men"
-                        "woman" "women"
-                        "person" "people"
-                        "activity" "activities"
-                        "carries" "carry"
+(def irregular-plurals {
                         "accesses" "access"
+                        "activity" "activities"
+                        "battery" "batteries"
                         "box" "boxes"
-                        "echoes" "echo" ; verb
+                        "carries" "carry"
+                        "child" "children"
+                        "company" "companies"
+                        "crashes" "crash"
+                        "digs out" "dig out"
                         "echo" "echoes" ; noun
-                        "family" "families"
-                        "thinks about" "think about"
+                        "echoes" "echo" ; verb
                         "factory" "factories"
-                        "virus" "viruses"
-                        "smells like" "smell like"
+                        "family" "families"
                         "has" "have"
-                        "shelf" "shelves"
-                        "touches" "touch"
+                        "leaf" "leaves"
+                        "man" "men"
+                        "matrix" "matrices"
+                        "person" "people"
+                        "pushes" "push"
                         "queries" "query" ; verb
                         "query" "queries" ; noun
                         "queues up" "queue up"
-                        "company" "companies"
-                        "digs out" "dig out"
-                        "crashes" "crash"
+                        "searches for" "search for"
+                        "shelf" "shelves"
+                        "smells like" "smell like"
+                        "thinks about" "think about"
+                        "touches" "touch"
+                        "virus" "viruses"
+                        "watches" "watch"
+                        "woman" "women"
                         })
 
