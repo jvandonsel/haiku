@@ -59,23 +59,23 @@
                              [noun-phrase-plural verb-phrase-plural]]])
 
 
-;; given:
-;;   vs=[1 2 3 4]
-;;   k=9
-;; returns:
-;;   [1 9 2 9 3 9 4 9]
-(defn alternate [vs k]
-  (concat  (interpose k vs) [k]) 
-  )
+;; Given a scalar k and a collection,
+;; generates a map of coll[0]->k, coll[1]->k...
+(defn gen-map [k coll]
+  ( let [
+         lc (map str/lower-case coll)
+         ;; generate [lc[0] k lc[1] k ...]
+         kvs (concat  (interpose k lc) [k])
+         ]
+   (apply array-map kvs )
+   ))
 
 ;; Given a map of syllables to word lists, inverts the map
 ;; to generate a map of word to syllable count.
-;; TODO: rewrite this fugly map inversion.
 (defn invert-word-map [m]
   (let []
     (reduce-kv
-     (fn [acc syllable-count words]
-       (apply assoc acc (alternate (map str/lower-case words) syllable-count) ) )
+     (fn [acc syllable-count words] (merge acc (gen-map syllable-count words)))
      {} m))
   )
 
