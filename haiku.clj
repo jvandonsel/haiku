@@ -15,7 +15,7 @@
                          "green" "fast" "wild" "strange"]
                      ;; 2-syllable words
                      2 ["happy"   "snowy" "speedy" "noisy" "steady" "heavy" "crazy" "random" "laden" "metal" "mindless" "seamless"
-                        "liquid" "yellow" "naked" "simple" "baby"]
+                        "liquid" "yellow" "naked" "simple" "baby" "mobile"]
                      ;; 3-syllable words
                      3 [ "curious" "amazing" "electric" "enormous" "unladen" "important" "recursive"]
                      ;; 4-syllable words
@@ -55,8 +55,9 @@
 (def verbs-s-intrans-map {
                           1 ["picks" "stows" "waits" "hides" "stores" "rests" "jumps" "weeps" "howls" "screams" "beeps" "dies" "plays" "hums" "moves" "charges"
                            "blinks" "sings" "stops" "spins" "drifts" "sits" "glides"  "drives" "walks" "stands" "starves"]
-                          2 ["listens" "enters" "watches" "twinkles" "echoes" "glimmers" "reboots" "travels" "rotates" "dances" "queues up"]
+                          2 ["listens" "enters" "watches" "twinkles" "echoes" "glimmers" "reboots" "travels" "rotates" "dances" "queues up" "crashes"]
                           3 ["navigates" "recovers" "emerges" ]
+                          4 ["equalizes"]
                           })
 (def verbs-s-intrans (flatten (vals verbs-s-intrans-map)))
 
@@ -124,6 +125,7 @@
                         "queues up" "queue up"
                         "company" "companies"
                         "digs out" "dig out"
+                        "crashes" "crash"
                         })
 
 
@@ -146,7 +148,7 @@
   )
 
 
-;; Applies function f to the values of the given map
+;; Applies function f to all values of the given map
 (defn update-map [m f]
   (reduce-kv (fn [acc k v] (assoc acc k (f v))) {} m)
   )
