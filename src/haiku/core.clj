@@ -1,4 +1,5 @@
 ;;; Random haiku generator, using a simple sentence grammar.
+;;; Vocabulary is in module vocab.clj.
 ;;;
 ;;; Programmer: J van Donsel
 ;;; December, 2016
@@ -45,7 +46,7 @@
 (def noun-phrase-singular        [[:choose-1 articles] [:opt [:choose-1 adjectives]] [:choose-1 nouns-s]])
 (def noun-phrase-singleton       [:choose-1 singleton-nouns])
 (def noun-phrase-plural          [[:opt [:choose-1 articles-plural]] [:opt [:choose-1 adjectives]] [:choose-1 nouns-p]])
-(def noun-phrase                 [:choose-1-weighted [[0.45 noun-phrase-singular] [0.45 noun-phrase-plural] [0.1 noun-phrase-singleton]]])
+(def noun-phrase                 [:choose-1-weighted [[0.40 noun-phrase-singular] [0.40 noun-phrase-plural] [0.2 noun-phrase-singleton]]])
                                  
 (def verb-phrase-sing-trans      [[:choose-1 verbs-s-trans] noun-phrase [:opt [:choose-1 adverbs]]])
 (def verb-phrase-sing-intrans    [:choose-1 verbs-s-intrans])
@@ -55,8 +56,8 @@
 (def verb-phrase-plural-intrans  [:choose-1 verbs-p-intrans])
 (def verb-phrase-plural          [:choose-1 [verb-phrase-plural-trans verb-phrase-plural-intrans]])
 
-(def line-recipe [:choose-1 [[noun-phrase-singular verb-phrase-sing]
-                             [noun-phrase-plural verb-phrase-plural]]])
+(def line-recipe                 [:choose-1 [[noun-phrase-singular verb-phrase-sing]
+                                             [noun-phrase-plural verb-phrase-plural]]])
 
 
 ;; Given a scalar k and a collection,
@@ -92,10 +93,9 @@
                 (invert-word-map articles-plural-map)
                 (invert-word-map singleton-nouns-map)
                 (invert-word-map adverbs-map)
-                ;; "an" doesn't appear in the articles list. it's applied in post-processing.
+                ;; "an" doesn't appear in the articles list. it's applied in post-processing, but we need a syllable count for it.
                 {"an" 1}
                 ))
-
 
 ;; Returns true with a probability of p
 (defn randy [p]
@@ -212,7 +212,7 @@
   (let [raw-line (flatten (assemble recipe))
         clean-line (post-process-line raw-line)
         k (count-sentence-syllables clean-line)]
-    ;; brute force: if we didn't hit our syllable target, try again.
+    ;; Brute force: if we didn't hit our syllable target, try again!
     (if (= syllable-target k)
       clean-line
       (recur recipe syllable-target)

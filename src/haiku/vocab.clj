@@ -37,13 +37,13 @@
 (def nouns-s-map {
                   1 ["drive" "pod" "floor" "zone" "spring" "thing" "bin" "tray" "cell" "path" "beer" "star" "leaf" "bird" "tree"
                      "noise" "sound" "light" "rain" "ghost" "screen" "sun" "moon" "day" "night" "crow" "man" "friend" "gift" "truck"
-                     "phone" "wire" "iPad" "tablet" "badge" "face" "file" "house" "rock" "box" "dog" "cat" "time" "cart" "dove" "glove"
+                     "phone" "wire"  "badge" "face" "file" "house" "rock" "box" "dog" "cat" "time" "cart" "dove" "glove"
                      "shelf" "bug" "team" "dev" "queue" "Mac" "hand" "aisle" "girl" "boy" "plan" "fire"]
                   2 ["robot" "robot" "station" "warehouse" "order" "human" "product" "winter" "summer" "autumn" "picker" "stower" "neighbor"
                      "window" "silence" "apple" "FC" "child" "mirror" "insect" "water"  "service" "server" "zombie" "woman" "person" "sunset"
                      "flower" "poem" "monkey" "eagle" "surprise" "button" "event" "finger" "machine" "resource" "function" "Kindle" "program"
                      "model" "virus" "query" "echo" "image" "system" "carton" "movie" "building" "pallet" "garden" "TT" "pipeline" "present"
-                     "coffee" "sticker" "barcode" "laptop" "website" "cable" "worker" "ASIN" "matrix" "scanner" "spirit"]
+                     "coffee" "sticker" "barcode" "laptop" "website" "cable" "worker" "ASIN" "matrix" "scanner" "spirit" "iPad" "tablet"]
                   3 ["battery" "computer" "activity" "database" "customer" "conveyor" "mezzanine" "MMA" "manager" "programmer" "factory" "family" "video"
                      "obstacle" "obstruction" "terminal" "restriction" "area" "datacenter" "company"]
                   4 ["operator" "fiducial" "associate"]
@@ -55,7 +55,7 @@
                           1 ["picks" "stows" "waits" "hides" "stores" "rests" "jumps" "weeps" "howls" "screams" "beeps" "dies" "plays" "hums" "moves" "charges"
                              "blinks" "sings" "stops" "spins" "drifts" "sits" "glides"  "drives" "walks" "stands" "starves"]
                           2 ["listens" "enters" "watches" "twinkles" "echoes" "glimmers" "reboots" "travels" "rotates" "dances" "queues up" "crashes"]
-                          3 ["navigates" "recovers" "emerges" ]
+                          3 ["navigates" "recovers" "emerges" "is coming" ]
                           4 ["equalizes"]
                           })
 (def verbs-s-intrans (flatten (vals verbs-s-intrans-map)))
@@ -85,10 +85,10 @@
 
 ;; Nouns like "daylight" or "Jeff" that don't have plurals and (usually) don't use articles
 ;; (Is there a real name for this part of speech?)
-(def singleton-nouns-map {1 ["Jeff" "work" "Ops" "the wind" "snow" "air" "code"]
+(def singleton-nouns-map {1 ["Jeff" "work" "Ops" "the wind" "snow" "air" "code" "peak"]
                           2 ["daylight" "hardware" "software" "data" "sunshine" "sunlight" "storage" "the Web" "AR" "QA" "money"
-                             "Java" "Apple" "Bezos" "Kiva" "dunnage" "FedEx" "music" "Kobra" "A-*"]
-                          3 ["Amazon" "amnesty" "Apollo" "Brazil" "Seattle"]
+                             "Java" "Apple" "Bezos" "Kiva" "dunnage" "FedEx" "music" "Kobra" "A-*" "Nike" "Atlas"]
+                          3 ["Amazon" "amnesty" "Apollo" "Brazil" "Seattle" "Hercules" "December"]
                           4 ["inventory" "America" "the Internet" "security" ]
                           } )
 (def singleton-nouns (flatten (vals singleton-nouns-map)))
@@ -111,6 +111,7 @@
                         "factory" "factories"
                         "family" "families"
                         "has" "have"
+                        "is coming" "are coming"
                         "leaf" "leaves"
                         "man" "men"
                         "matrix" "matrices"
