@@ -1,14 +1,32 @@
-# haiku
+A simple random haiku generator in Clojure.
 
-A Clojure library designed to ... well, that part is up to you.
+This code is currently using a vocabulary set related to Amazon Robotics,
+but this can be customized.
 
-## Usage
+Some sample haiku:
 
-FIXME
+>The family stops  
+>The child breaks a finger  
+>Robots recover
 
-## License
 
-Copyright © 2016 FIXME
+>A poem watches  
+>A robot lifts some green things  
+>All noisy cats die
 
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+
+>A manager blinks  
+>Videos await the Web  
+>A naked man drifts
+
+
+>Cold customers jump  
+>All batteries hate their path  
+>The laden code howls
+
+
+>Obstructions rotate  
+>A leaf notices a cell  
+>An image dances
+
+

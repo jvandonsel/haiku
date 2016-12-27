@@ -8,8 +8,6 @@
   (:use [haiku.vocab])
   )
 
-
-
 (defn pluralize-noun [w]
   (if (coll? w)
     (map pluralize-noun w)
@@ -44,14 +42,14 @@
 
 
 ;;; Grammar
-(def noun-phrase-singular  [[:choose-1 articles] [:opt [:choose-1 adjectives]] [:choose-1 nouns-s]])
-(def noun-phrase-singleton [:choose-1 singleton-nouns])
-(def noun-phrase-plural    [[:opt [:choose-1 articles-plural]] [:opt [:choose-1 adjectives]] [:choose-1 nouns-p]])
-(def noun-phrase           [:choose-1-weighted [[0.45 noun-phrase-singular] [0.45 noun-phrase-plural] [0.1 noun-phrase-singleton]]])
-
-(def verb-phrase-sing-trans   [[:choose-1 verbs-s-trans] noun-phrase [:opt [:choose-1 adverbs]]])
-(def verb-phrase-sing-intrans [:choose-1 verbs-s-intrans])
-(def verb-phrase-sing         [:choose-1 [verb-phrase-sing-trans verb-phrase-sing-intrans]])
+(def noun-phrase-singular        [[:choose-1 articles] [:opt [:choose-1 adjectives]] [:choose-1 nouns-s]])
+(def noun-phrase-singleton       [:choose-1 singleton-nouns])
+(def noun-phrase-plural          [[:opt [:choose-1 articles-plural]] [:opt [:choose-1 adjectives]] [:choose-1 nouns-p]])
+(def noun-phrase                 [:choose-1-weighted [[0.45 noun-phrase-singular] [0.45 noun-phrase-plural] [0.1 noun-phrase-singleton]]])
+                                 
+(def verb-phrase-sing-trans      [[:choose-1 verbs-s-trans] noun-phrase [:opt [:choose-1 adverbs]]])
+(def verb-phrase-sing-intrans    [:choose-1 verbs-s-intrans])
+(def verb-phrase-sing            [:choose-1 [verb-phrase-sing-trans verb-phrase-sing-intrans]])
 
 (def verb-phrase-plural-trans    [[:choose-1 verbs-p-trans] noun-phrase])
 (def verb-phrase-plural-intrans  [:choose-1 verbs-p-intrans])

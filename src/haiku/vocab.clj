@@ -1,4 +1,4 @@
-;;; Vocabulary for random haiku 
+;;; Vocabulary for random haiku generator
 ;;;
 ;;; This vocabulary set relates to Amazon Robotics, but it's easy to customize.
 ;;;
