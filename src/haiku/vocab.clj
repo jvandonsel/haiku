@@ -36,14 +36,14 @@
 (def nouns-s-map {
                   1 ["drive" "pod" "floor" "zone" "spring" "thing" "bin" "tray" "cell" "path" "beer" "star" "leaf" "bird" "tree"
                      "noise" "sound" "light" "rain" "ghost" "screen" "sun" "moon" "day" "night" "crow" "man" "friend" "gift" "truck"
-                     "phone" "wire"  "badge" "face" "file" "house" "rock" "box" "dog" "cat" "time" "cart" "dove" "glove"
-                     "shelf" "bug" "team" "dev" "queue" "Mac" "hand" "aisle" "girl" "boy" "plan" "fire" "map"]
+                     "phone" "wire"  "badge" "face" "file" "house" "rock" "box" "dog" "cat" "cart" "dove" "glove"
+                     "shelf" "bug" "team" "dev" "queue" "Mac" "hand" "aisle" "girl" "boy" "plan" "fire" "map" "sea"]
                   2 ["robot" "robot" "station" "warehouse" "order" "human" "product" "winter" "summer" "autumn" "picker" "stower" "neighbor"
                      "window" "silence" "apple" "FC" "child" "mirror" "insect" "water"  "service" "server" "zombie" "woman" "person" "sunset"
                      "flower" "poem" "monkey" "eagle" "surprise" "button" "event" "finger" "machine" "resource" "function" "Kindle" "program"
-                     "model" "virus" "query" "echo" "image" "system" "carton" "movie" "building" "pallet" "garden" "TT" "pipeline" "present"
+                     "model" "virus" "query" "echo" "image" "system" "carton" "movie" "building" "pallet" "garden" "TT" "pipeline" 
                      "coffee" "sticker" "barcode" "laptop" "website" "cable" "worker" "ASIN" "matrix" "scanner" "spirit" "iPad" "tablet"
-                     "charger"]
+                     "charger" "robin"]
                   3 ["battery" "computer" "activity" "database" "customer" "conveyor" "mezzanine" "MMA" "manager" "programmer" "factory" "family" "video"
                      "obstacle" "obstruction" "terminal" "restriction" "area" "datacenter" "company"]
                   4 ["operator" "fiducial" "associate"]
@@ -62,9 +62,10 @@
 
 ;; singular transitive verbs
 (def verbs-s-trans-map {1 ["picks" "brings" "stows" "eats" "stores" "finds" "searches for" "hears" "sees" "loves" "hates" "breaks" "drinks" "counts"
-                           "inspects" "takes" "ships" "scans" "builds" "senses" "lifts" "has" "maps" "tracks" "sends" "plans" "tests" "blocks" "seeks"]
+                           "inspects" "ships" "scans" "builds" "senses" "lifts" "has" "maps" "tracks" "sends" "plans" "tests" "blocks" "seeks"
+                           "tastes" "kills"]
                         2 ["orders" "awaits" "gathers"  "reboots" "pushes" "commands" "rejects" "carries" "controls" "restricts" "constructs" "designs"
-                           "programs" "accesses" "infects" "reflects" "supports" "smells like" "programs" "touches" "obstructs" "queries"
+                           "programs" "accesses" "infects" "reflects" "supports" "smells of" "programs" "touches" "obstructs" "queries"
                            "digs out" "dreams of"]
                         3 ["notices" "thinks about" "recovers" "contemplates" "manages" "prohibits" ]
                         4 ["consolidates"]
@@ -79,7 +80,7 @@
 (def articles (flatten (vals articles-map)))
 
 ;; Plural articles
-(def articles-plural-map {1  ["some" "all" "no"]
+(def articles-plural-map {1  ["some" "all" "no" "few"]
                           2 ["many"]})
 (def articles-plural (flatten (vals articles-plural-map)))
 
@@ -87,8 +88,8 @@
 ;; (Is there a real name for this part of speech?)
 (def singleton-nouns-map {1 ["Jeff" "work" "Ops" "the wind" "snow" "air" "code" "peak"]
                           2 ["daylight" "hardware" "software" "data" "sunshine" "sunlight" "storage" "the Web" "AR" "QA" "money"
-                             "Java" "Apple" "Bezos" "Kiva" "dunnage" "FedEx" "music" "Kobra" "A-*" "Nike" "Atlas" "Jira"]
-                          3 ["Amazon" "amnesty" "Apollo" "Brazil" "Seattle" "Hercules" "December"]
+                             "Java" "Apple" "Bezos" "Kiva" "dunnage" "FedEx" "music" "Kobra" "A*" "Nike" "Atlas" "Jira" "Joe Q."]
+                          3 ["Amazon" "amnesty" "Apollo" "Brazil" "Seattle" "Hercules" "December" "Cerberus"]
                           4 ["inventory" "America" "the Internet" "security" ]
                           } )
 (def singleton-nouns (flatten (vals singleton-nouns-map)))
@@ -124,7 +125,7 @@
                         "queues up" "queue up"
                         "searches for" "search for"
                         "shelf" "shelves"
-                        "smells like" "smell like"
+                        "smells of" "smell of"
                         "thinks about" "think about"
                         "touches" "touch"
                         "virus" "viruses"
