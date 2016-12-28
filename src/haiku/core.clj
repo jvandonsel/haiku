@@ -49,7 +49,7 @@
 (def noun-phrase                 [:choose-1-weighted [[0.40 noun-phrase-singular] [0.40 noun-phrase-plural] [0.2 noun-phrase-singleton]]])
                                  
 (def verb-phrase-sing-trans      [[:choose-1 verbs-s-trans] noun-phrase [:opt [:choose-1 adverbs]]])
-(def verb-phrase-sing-intrans    [:choose-1 verbs-s-intrans])
+(def verb-phrase-sing-intrans    [[:choose-1 verbs-s-intrans] [:opt [:choose-1 adverbs]]])
 (def verb-phrase-sing            [:choose-1 [verb-phrase-sing-trans verb-phrase-sing-intrans]])
 
 (def verb-phrase-plural-trans    [[:choose-1 verbs-p-trans] noun-phrase])
@@ -150,10 +150,15 @@
 (defn starts-with-vowel [word]
   (contains? #{"a" "e" "i" "o" "u"} (str/lower-case (first word))))
 
+;; Returns true if this word should use "an" instead of "a"
+(defn needs-an [word]
+  (or (starts-with-vowel word) (contains? use-an word)))
+
 (defn remove-blanks [line]
   (filter #(not (empty? %)) line))
 
 ;; Change 'a' to 'an' if the next word starts with a vowel
+;; or is in our set of words forced to use "an".
 (defn a-to-an [line]
   (let [
         n (count line)
@@ -167,14 +172,14 @@
                                    (nth line (inc i)))
                         ]
                      (if (= "a" val)
-                       (if (starts-with-vowel next-val)
+                       (if (needs-an next-val)
                          "an"
                          "a")
                        val)
                      )) line )
     ))
 
-;; Capitalizes a word
+;; Capitalizes the first letter of a word
 (defn capitalize-word [word]
   (let [first-letter (first word)
         ]

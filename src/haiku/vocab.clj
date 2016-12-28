@@ -11,14 +11,14 @@
 (def adjectives-map {
                      ;; 1-syllable words
                      1  ["orange" "strange" "green" "hot" "cold" "small" "large" "wide" "light" "strong" "weak" "dark" "black" "white" "glass" "deep" "red" "blue"
-                         "green" "fast" "wild" "strange"]
+                         "green" "fast" "wild" "strange" "fast"]
                      ;; 2-syllable words
                      2 ["happy"   "snowy" "speedy" "noisy" "steady" "heavy" "crazy" "random" "laden" "metal" "mindless" "seamless"
-                        "liquid" "yellow" "naked" "simple" "baby" "mobile"]
+                        "liquid" "yellow" "naked" "simple" "baby" "mobile" "lazy"]
                      ;; 3-syllable words
                      3 [ "curious" "amazing" "electric" "enormous" "unladen" "important" "recursive"]
                      ;; 4-syllable words
-                     4 ["interesting"]
+                     4 ["interesting" "electronic"]
                      ;; 5-syllable words
                      5 ["battery-powered"]
                      })
@@ -26,7 +26,6 @@
 
 ;; Adverbs
 (def adverbs-map {
-                  1 ["fast"]
                   2 ["alone" "loudly" "at night" "wildly" "deeply"]
                   3 ["silently" "patiently" "seamlessly" "quietly" ]
                   4 ["furiously"]
@@ -38,12 +37,13 @@
                   1 ["drive" "pod" "floor" "zone" "spring" "thing" "bin" "tray" "cell" "path" "beer" "star" "leaf" "bird" "tree"
                      "noise" "sound" "light" "rain" "ghost" "screen" "sun" "moon" "day" "night" "crow" "man" "friend" "gift" "truck"
                      "phone" "wire"  "badge" "face" "file" "house" "rock" "box" "dog" "cat" "time" "cart" "dove" "glove"
-                     "shelf" "bug" "team" "dev" "queue" "Mac" "hand" "aisle" "girl" "boy" "plan" "fire"]
+                     "shelf" "bug" "team" "dev" "queue" "Mac" "hand" "aisle" "girl" "boy" "plan" "fire" "map"]
                   2 ["robot" "robot" "station" "warehouse" "order" "human" "product" "winter" "summer" "autumn" "picker" "stower" "neighbor"
                      "window" "silence" "apple" "FC" "child" "mirror" "insect" "water"  "service" "server" "zombie" "woman" "person" "sunset"
                      "flower" "poem" "monkey" "eagle" "surprise" "button" "event" "finger" "machine" "resource" "function" "Kindle" "program"
                      "model" "virus" "query" "echo" "image" "system" "carton" "movie" "building" "pallet" "garden" "TT" "pipeline" "present"
-                     "coffee" "sticker" "barcode" "laptop" "website" "cable" "worker" "ASIN" "matrix" "scanner" "spirit" "iPad" "tablet"]
+                     "coffee" "sticker" "barcode" "laptop" "website" "cable" "worker" "ASIN" "matrix" "scanner" "spirit" "iPad" "tablet"
+                     "charger"]
                   3 ["battery" "computer" "activity" "database" "customer" "conveyor" "mezzanine" "MMA" "manager" "programmer" "factory" "family" "video"
                      "obstacle" "obstruction" "terminal" "restriction" "area" "datacenter" "company"]
                   4 ["operator" "fiducial" "associate"]
@@ -53,7 +53,7 @@
 ;; Singular intransitive verbs
 (def verbs-s-intrans-map {
                           1 ["picks" "stows" "waits" "hides" "stores" "rests" "jumps" "weeps" "howls" "screams" "beeps" "dies" "plays" "hums" "moves" "charges"
-                             "blinks" "sings" "stops" "spins" "drifts" "sits" "glides"  "drives" "walks" "stands" "starves"]
+                             "blinks" "sings" "stops" "spins" "drifts" "sits" "glides"  "drives" "walks" "stands" "starves" "sleeps" "dreams" "runs"]
                           2 ["listens" "enters" "watches" "twinkles" "echoes" "glimmers" "reboots" "travels" "rotates" "dances" "queues up" "crashes"]
                           3 ["navigates" "recovers" "emerges" "is coming" ]
                           4 ["equalizes"]
@@ -61,12 +61,12 @@
 (def verbs-s-intrans (flatten (vals verbs-s-intrans-map)))
 
 ;; singular transitive verbs
-(def verbs-s-trans-map {1 ["picks" "brings" "stows" "eats" "runs" "stores" "finds" "searches for" "hears" "sees" "loves" "hates" "breaks" "drinks" "counts"
+(def verbs-s-trans-map {1 ["picks" "brings" "stows" "eats" "stores" "finds" "searches for" "hears" "sees" "loves" "hates" "breaks" "drinks" "counts"
                            "inspects" "takes" "ships" "scans" "builds" "senses" "lifts" "has" "maps" "tracks" "sends" "plans" "tests" "blocks" "seeks"]
                         2 ["orders" "awaits" "gathers"  "reboots" "pushes" "commands" "rejects" "carries" "controls" "restricts" "constructs" "designs"
                            "programs" "accesses" "infects" "reflects" "supports" "smells like" "programs" "touches" "obstructs" "queries"
-                           "digs out"]
-                        3 ["notices" "surprises" "thinks about" "recovers" "contemplates" "manages" "prohibits" ]
+                           "digs out" "dreams of"]
+                        3 ["notices" "thinks about" "recovers" "contemplates" "manages" "prohibits" ]
                         4 ["consolidates"]
                         })
 (def verbs-s-trans (flatten (vals verbs-s-trans-map)))
@@ -87,7 +87,7 @@
 ;; (Is there a real name for this part of speech?)
 (def singleton-nouns-map {1 ["Jeff" "work" "Ops" "the wind" "snow" "air" "code" "peak"]
                           2 ["daylight" "hardware" "software" "data" "sunshine" "sunlight" "storage" "the Web" "AR" "QA" "money"
-                             "Java" "Apple" "Bezos" "Kiva" "dunnage" "FedEx" "music" "Kobra" "A-*" "Nike" "Atlas"]
+                             "Java" "Apple" "Bezos" "Kiva" "dunnage" "FedEx" "music" "Kobra" "A-*" "Nike" "Atlas" "Jira"]
                           3 ["Amazon" "amnesty" "Apollo" "Brazil" "Seattle" "Hercules" "December"]
                           4 ["inventory" "America" "the Internet" "security" ]
                           } )
@@ -95,7 +95,8 @@
 
 
 ;; Irregular singlar->plurals for both nouns and verbs
-;; TODO: when pluralized, some of these words change their syllable count.
+;; FIXME: when pluralized, some of these words change their syllable count, which
+;; can result in incorrect final syllable counts in a line.
 (def irregular-plurals {
                         "accesses" "access"
                         "activity" "activities"
@@ -106,6 +107,7 @@
                         "company" "companies"
                         "crashes" "crash"
                         "digs out" "dig out"
+                        "dreams of" "dream of"
                         "echo" "echoes" ; noun
                         "echoes" "echo" ; verb
                         "factory" "factories"
@@ -130,3 +132,6 @@
                         "woman" "women"
                         })
 
+;; Words before which we should use "an" instead of "a" even though
+;; they don't start with a vowel.
+(def use-an #{"MMA" "FC"})
