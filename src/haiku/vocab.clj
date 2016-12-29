@@ -10,13 +10,13 @@
 ;; Adjectives
 (def adjectives-map {
                      ;; 1-syllable words
-                     1  ["orange" "strange" "green" "hot" "cold" "small" "large" "wide" "light" "strong" "weak" "dark" "black" "white" "glass" "deep" "red" "blue"
-                         "green" "fast" "wild" "strange" "fast" "fat"]
+                     1  ["strange" "green" "hot" "cold" "small" "large" "wide" "light" "strong" "weak" "dark" "black" "white" "glass" "deep" "red" "blue"
+                         "green" "fast" "wild" "strange" "fat"]
                      ;; 2-syllable words
                      2 ["happy"   "snowy" "speedy" "noisy" "steady" "heavy" "crazy" "random" "laden" "metal" "mindless" 
-                        "liquid" "yellow" "naked" "simple" "baby" "mobile" "lazy" "shiny"]
+                        "liquid" "yellow" "naked" "simple" "baby" "mobile" "lazy" "shiny" "orange"]
                      ;; 3-syllable words
-                     3 [ "curious" "amazing" "electric" "enormous" "unladen" "important" "recursive" "frictionless"]
+                     3 [ "curious" "amazing" "electric" "enormous" "unladen" "important" "recursive" "frictionless" "nuclear" "atomic" "unstable"]
                      ;; 4-syllable words
                      4 ["interesting" "electronic"]
                      ;; 5-syllable words
@@ -38,38 +38,38 @@
                      "noise" "sound" "light" "rain" "ghost" "screen" "sun" "moon" "day" "night" "crow" "man" "friend" "gift" "truck"
                      "phone"  "badge" "face" "file" "house" "rock" "box" "dog" "cat" "cart" "dove" "glove" "cloud" "sky" "cube"
                      "shelf" "bug" "team" "dev" "queue" "Mac" "hand" "aisle" "girl" "boy" "plan" "fire" "map" "sea" "sheep"
-                     "cache"]
+                     "cache" "fleet" "child"]
                   2 ["robot" "robot" "station" "warehouse" "order" "human" "product" "winter" "summer" "autumn" "picker" "stower" "neighbor"
-                     "window" "silence" "apple" "FC" "child" "mirror" "insect" "water"  "service" "server" "zombie" "woman" "person" "sunset"
+                     "window" "silence" "apple" "FC"  "mirror" "insect" "water"  "service" "server" "zombie" "woman" "person" "sunset"
                      "flower" "poem" "monkey" "eagle" "surprise" "button" "event" "finger" "machine" "resource" "function" "Kindle" "program"
                      "model" "virus" "query" "echo" "image" "system" "carton" "movie" "building" "pallet" "garden" "TT" "pipeline" 
                      "coffee" "sticker" "barcode" "laptop" "website" "cable" "worker" "ASIN" "matrix" "scanner" "spirit" "iPad" "tablet"
-                     "charger" "robin" "ocean" "river" "password" "module"]
-                  3 ["battery" "computer" "activity" "database" "customer" "conveyor" "mezzanine" "MMA" "manager" "programmer" "factory" "family" "video"
-                     "obstacle" "obstruction" "terminal" "restriction" "area" "datacenter" "company"
+                     "charger" "robin" "ocean" "river" "password" "module" "laser" "volume" "cuboid" "browser"]
+                  3 ["battery" "computer"  "database" "customer" "conveyor" "mezzanine" "MMA" "manager" "programmer" "factory" "family" "video"
+                     "obstacle" "obstruction" "terminal" "restriction" "area"  "company"
                      "credential"]
-                  4 ["operator" "fiducial" "associate"]
+                  4 ["operator" "fiducial" "associate" "activity" "datacenter"]
                   })
 (def nouns-s (flatten (vals nouns-s-map)))
 
 ;; Singular intransitive verbs
 (def verbs-s-intrans-map {
-                          1 ["picks" "stows" "waits" "hides" "stores" "rests" "jumps" "weeps" "howls" "screams" "beeps" "dies" "plays" "hums" "moves" "charges"
+                          1 ["picks" "stows" "waits" "hides" "stores" "rests" "jumps" "weeps" "howls" "screams" "beeps" "dies" "plays" "hums" "moves" 
                              "blinks" "sings" "stops" "spins" "drifts" "sits" "glides"  "drives" "walks" "stands" "starves" "sleeps" "dreams" "runs"]
-                          2 ["listens" "enters" "watches" "twinkles" "echoes" "glimmers" "reboots" "travels" "rotates" "dances" "queues up" "crashes"]
+                          2 ["listens" "enters" "watches" "twinkles" "echoes" "glimmers" "reboots" "travels" "rotates" "dances" "queues up" "crashes" "charges"]
                           3 ["navigates" "recovers" "emerges" "is coming" ]
                           4 ["equalizes"]
                           })
 (def verbs-s-intrans (flatten (vals verbs-s-intrans-map)))
 
 ;; singular transitive verbs
-(def verbs-s-trans-map {1 ["picks" "brings" "stows" "eats" "stores" "finds" "searches for" "hears" "sees" "loves" "hates" "breaks" "drinks" "counts"
-                           "inspects" "ships" "scans" "builds" "senses" "lifts" "has" "maps" "tracks" "sends" "plans" "tests" "blocks" "seeks"
+(def verbs-s-trans-map {1 ["picks" "brings" "stows" "eats" "stores" "finds"  "hears" "sees" "loves" "hates" "breaks" "drinks" "counts"
+                            "ships" "scans" "builds"  "lifts" "has" "maps" "tracks" "sends" "plans" "tests" "blocks" "seeks"
                            "tastes" "kills" "streams"]
-                        2 ["orders" "awaits" "gathers"  "reboots" "pushes" "commands" "rejects" "carries" "controls" "restricts" "constructs" "designs"
+                        2 ["orders" "awaits" "gathers" "reboots" "pushes" "commands" "rejects" "carries" "controls" "restricts" "constructs" "designs"
                            "programs" "accesses" "infects" "reflects" "supports" "smells of" "programs" "touches" "obstructs" "queries"
-                           "digs out" "dreams of" "renders"]
-                        3 ["notices" "thinks about" "recovers" "contemplates" "manages" "prohibits" ]
+                           "digs out" "dreams of" "renders" "inspects" "senses"]
+                        3 ["notices" "thinks about" "recovers" "contemplates" "manages" "prohibits" "encounters" "searches for"]
                         4 ["consolidates"]
                         })
 (def verbs-s-trans (flatten (vals verbs-s-trans-map)))
@@ -88,12 +88,13 @@
 
 ;; Nouns like "daylight" or "Jeff" that don't have plurals and (usually) don't use articles
 ;; (Is there a real name for this part of speech?)
-(def singleton-nouns-map {1 ["Jeff" "work" "Ops" "the wind" "snow" "air" "code" "peak"]
+(def singleton-nouns-map {
+                          1 ["Jeff" "work" "Ops"  "snow" "air" "code" "peak" "Prod"]
                           2 ["daylight" "hardware" "software" "data" "sunshine" "sunlight" "storage" "the Web" "AR" "QA" "money"
                              "Java" "Apple" "Bezos" "Kiva" "dunnage" "FedEx" "music" "Kobra" "A*" "Nike" "Atlas" "Jira" "Joe Q."
-                             "lightning"]
-                          3 ["Amazon" "amnesty" "Apollo" "Brazil" "Seattle" "Hercules" "December" "Cerberus" "Alexa"]
-                          4 ["inventory" "America" "the Internet" "security" "Coral"]
+                             "lightning" "Europe" "Coral" "the wind" "Brazil"] 
+                          3 ["Amazon" "amnesty" "Apollo" "Seattle" "Hercules" "December" "Cerberus" "Alexa"]
+                          4 ["inventory" "America" "the Internet" "security" ]
                           } )
 (def singleton-nouns (flatten (vals singleton-nouns-map)))
 
