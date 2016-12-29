@@ -1,7 +1,5 @@
 ;;; Vocabulary for random haiku generator
 ;;;
-;;; This vocabulary set relates to Amazon Robotics, but it's easy to customize.
-;;;
 ;;; Programmer: J van Donsel
 ;;; December, 2016
 ;;;

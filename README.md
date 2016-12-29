@@ -1,7 +1,6 @@
 A simple random haiku generator in Clojure.
 
-This code is currently using a vocabulary set related to Amazon Robotics,
-but this can be customized.
+The default vocabulary is very techy, but it can be customized fairly easily.
 
 Some sample haiku:
 
