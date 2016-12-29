@@ -155,7 +155,7 @@
   (or (starts-with-vowel word) (contains? use-an word)))
 
 (defn remove-blanks [line]
-  (filter #(not (empty? %)) line))
+  (remove empty? line))
 
 ;; Change 'a' to 'an' if the next word starts with a vowel
 ;; or is in our set of words forced to use "an".
