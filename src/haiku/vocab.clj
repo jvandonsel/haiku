@@ -9,12 +9,14 @@
 (def adjectives-map {
                      ;; 1-syllable words
                      1  ["strange" "green" "hot" "cold" "small" "large" "wide" "light" "strong" "weak" "dark" "black" "white" "glass" "deep" "red" "blue"
-                         "green" "fast" "wild" "strange" "fat"]
+                         "green" "quick" "wild" "strange" "fat" "twin"]
                      ;; 2-syllable words
-                     2 ["happy"   "snowy" "speedy" "noisy" "steady" "heavy" "crazy" "random" "laden" "metal" "mindless" 
-                        "liquid" "yellow" "naked" "simple" "baby" "mobile" "lazy" "shiny" "orange"]
+                     2 ["happy"   "snowy" "speedy" "noisy" "steady" "heavy" "crazy" "random" "laden" "metal" "mindless" "liquid" "yellow" "naked" "simple"
+                        "baby" "mobile" "lazy" "shiny" "orange" "oblique" "conjoined" "double" "agile" "master" "insane" "managed" "sleeping" "giant"
+                        "frozen"]
                      ;; 3-syllable words
-                     3 [ "curious" "amazing" "electric" "enormous" "unladen" "important" "recursive" "frictionless" "nuclear" "atomic" "unstable"]
+                     3 [ "curious" "amazing" "electric" "enormous" "unladen" "important" "recursive" "frictionless" "nuclear" "atomic" "unstable" "parallel"
+                        "linear" "disabled"]
                      ;; 4-syllable words
                      4 ["interesting" "electronic"]
                      ;; 5-syllable words
@@ -24,28 +26,28 @@
 
 ;; Adverbs
 (def adverbs-map {1 ["now"]
-                  2 ["alone" "loudly" "at night" "wildly" "deeply" "daily"]
-                  3 ["silently" "patiently" "seamlessly" "quietly" ]
+                  2 ["alone" "loudly" "at night" "wildly" "deeply" "daily" "in mist"]
+                  3 ["silently" "patiently" "seamlessly" "quietly" "in silence"]
                   4 ["furiously"]
                   })
 (def adverbs (flatten (vals adverbs-map)))
 
 ;; Singular nouns
 (def nouns-s-map {
-                  1 ["drive" "pod" "floor" "zone" "spring" "thing" "bin" "tray" "cell" "path" "beer" "star" "leaf" "bird" "tree"
+                  1 ["drive" "pod" "floor" "zone"  "thing" "bin" "tray" "cell" "path" "beer" "star" "leaf" "bird" "tree"
                      "noise" "sound" "light" "rain" "ghost" "screen" "sun" "moon" "day" "night" "crow" "man" "friend" "gift" "truck"
                      "phone"  "badge" "face" "file" "house" "rock" "box" "dog" "cat" "cart" "dove" "glove" "cloud" "sky" "cube"
                      "shelf" "bug" "team" "dev" "queue" "Mac" "hand" "aisle" "girl" "boy" "plan" "fire" "map" "sea" "sheep"
-                     "cache" "fleet" "child"]
-                  2 ["robot" "robot" "station" "warehouse" "order" "human" "product" "winter" "summer" "autumn" "picker" "stower" "neighbor"
+                     "cache" "fleet" "child" "job" "task" "log"]
+                  2 ["robot" "robot" "robot" "station" "warehouse" "order" "human" "product" "winter" "summer" "autumn" "picker" "stower" "neighbor"
                      "window" "silence" "apple" "FC"  "mirror" "insect" "water"  "service" "server" "zombie" "woman" "person" "sunset"
                      "flower" "poem" "monkey" "eagle" "surprise" "button" "event" "finger" "machine" "resource" "function" "Kindle" "program"
                      "model" "virus" "query" "echo" "image" "system" "carton" "movie" "building" "pallet" "garden" "TT" "pipeline" 
                      "coffee" "sticker" "barcode" "laptop" "website" "cable" "worker" "ASIN" "matrix" "scanner" "spirit" "iPad" "tablet"
-                     "charger" "robin" "ocean" "river" "password" "module" "laser" "volume" "cuboid" "browser"]
+                     "charger" "robin" "ocean" "river" "password" "module" "laser" "volume" "cuboid" "browser" "region" "mission" "garden" "android"
+                     "AI" "target" "shadow" "blossom" "lily"]
                   3 ["battery" "computer"  "database" "customer" "conveyor" "mezzanine" "MMA" "manager" "programmer" "factory" "family" "video"
-                     "obstacle" "obstruction" "terminal" "restriction" "area"  "company"
-                     "credential"]
+                     "obstacle" "obstruction" "terminal" "restriction" "area"  "company" "credential" "location" "butterfly"]
                   4 ["operator" "fiducial" "associate" "activity" "datacenter"]
                   })
 (def nouns-s (flatten (vals nouns-s-map)))
@@ -53,8 +55,10 @@
 ;; Singular intransitive verbs
 (def verbs-s-intrans-map {
                           1 ["picks" "stows" "waits" "hides" "stores" "rests" "jumps" "weeps" "howls" "screams" "beeps" "dies" "plays" "hums" "moves" 
-                             "blinks" "sings" "stops" "spins" "drifts" "sits" "glides"  "drives" "walks" "stands" "starves" "sleeps" "dreams" "runs"]
-                          2 ["listens" "enters" "watches" "twinkles" "echoes" "glimmers" "reboots" "travels" "rotates" "dances" "queues up" "crashes" "charges"]
+                             "blinks" "sings" "stops" "spins" "drifts" "sits" "glides"  "drives" "walks" "stands" "starves" "sleeps" "dreams" "runs"
+                             "smiles"]
+                          2 ["listens" "enters" "watches" "twinkles" "echoes" "glimmers" "reboots" "travels" "rotates" "dances" "queues up" "crashes" "charges"
+                             "sneezes" "daydreams" "flickers"]
                           3 ["navigates" "recovers" "emerges" "is coming" ]
                           4 ["equalizes"]
                           })
@@ -66,7 +70,7 @@
                            "tastes" "kills" "streams"]
                         2 ["orders" "awaits" "gathers" "reboots" "pushes" "commands" "rejects" "carries" "controls" "restricts" "constructs" "designs"
                            "programs" "accesses" "infects" "reflects" "supports" "smells of" "programs" "touches" "obstructs" "queries"
-                           "digs out" "dreams of" "renders" "inspects" "senses"]
+                           "digs out" "dreams of" "renders" "inspects" "senses" "surrounds" "attacks"]
                         3 ["notices" "thinks about" "recovers" "contemplates" "manages" "prohibits" "encounters" "searches for"]
                         4 ["consolidates"]
                         })
@@ -87,11 +91,11 @@
 ;; Nouns like "daylight" or "Jeff" that don't have plurals and (usually) don't use articles
 ;; (Is there a real name for this part of speech?)
 (def singleton-nouns-map {
-                          1 ["Jeff" "work" "Ops"  "snow" "air" "code" "peak" "Prod"]
+                          1 ["Jeff" "work" "Ops"  "snow" "air" "code" "peak" "Prod" "spring"]
                           2 ["daylight" "hardware" "software" "data" "sunshine" "sunlight" "storage" "the Web" "AR" "QA" "money"
                              "Java" "Apple" "Bezos" "Kiva" "dunnage" "FedEx" "music" "Kobra" "A*" "Nike" "Atlas" "Jira" "Joe Q."
-                             "lightning" "Europe" "Coral" "the wind" "Brazil"] 
-                          3 ["Amazon" "amnesty" "Apollo" "Seattle" "Hercules" "December" "Cerberus" "Alexa"]
+                             "lightning" "Europe" "Coral" "the wind" "Brazil" "Python"] 
+                          3 ["Amazon" "amnesty" "Apollo" "Seattle" "Hercules" "December" "Cerberus" "Alexa" "IAD"]
                           4 ["inventory" "America" "the Internet" "security" ]
                           } )
 (def singleton-nouns (flatten (vals singleton-nouns-map)))
@@ -105,6 +109,7 @@
                         "activity" "activities"
                         "battery" "batteries"
                         "box" "boxes"
+                        "butterfly" "butterflies"
                         "carries" "carry"
                         "child" "children"
                         "company" "companies"
@@ -118,6 +123,7 @@
                         "has" "have"
                         "is coming" "are coming"
                         "leaf" "leaves"
+                        "lily" "lilies"
                         "man" "men"
                         "matrix" "matrices"
                         "person" "people"

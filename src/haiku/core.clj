@@ -57,7 +57,10 @@
 (def verb-phrase-plural          [:choose-1 [verb-phrase-plural-trans verb-phrase-plural-intrans]])
 
 (def line-recipe                 [:choose-1 [[noun-phrase-singular verb-phrase-sing]
-                                             [noun-phrase-plural verb-phrase-plural]]])
+                                             [noun-phrase-plural verb-phrase-plural]
+                                             ;;[noun-phrase-singleton]
+                                             ;;[noun-phrase-plural]
+                                             ]])
 
 
 ;; Given a scalar k and a collection,
