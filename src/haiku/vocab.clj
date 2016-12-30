@@ -9,16 +9,16 @@
 (def adjectives-map {
                      ;; 1-syllable words
                      1  ["strange" "green" "hot" "cold" "small" "large" "wide" "light" "strong" "weak" "dark" "black" "white" "glass" "deep" "red" "blue"
-                         "green" "quick" "wild" "strange" "fat" "twin"]
+                         "green" "quick" "wild" "strange" "fat" "twin" "sweet"]
                      ;; 2-syllable words
                      2 ["happy"   "snowy" "speedy" "noisy" "steady" "heavy" "crazy" "random" "laden" "metal" "mindless" "liquid" "yellow" "naked" "simple"
                         "baby" "mobile" "lazy" "shiny" "orange" "oblique" "conjoined" "double" "agile" "master" "insane" "managed" "sleeping" "giant"
-                        "frozen"]
+                        "frozen" "streaming" "soggy" "cardboard" "paper"]
                      ;; 3-syllable words
                      3 [ "curious" "amazing" "electric" "enormous" "unladen" "important" "recursive" "frictionless" "nuclear" "atomic" "unstable" "parallel"
                         "linear" "disabled"]
                      ;; 4-syllable words
-                     4 ["interesting" "electronic"]
+                     4 ["interesting" "electronic" "impossible"]
                      ;; 5-syllable words
                      5 ["battery-powered"]
                      })
@@ -38,14 +38,14 @@
                      "noise" "sound" "light" "rain" "ghost" "screen" "sun" "moon" "day" "night" "crow" "man" "friend" "gift" "truck"
                      "phone"  "badge" "face" "file" "house" "rock" "box" "dog" "cat" "cart" "dove" "glove" "cloud" "sky" "cube"
                      "shelf" "bug" "team" "dev" "queue" "Mac" "hand" "aisle" "girl" "boy" "plan" "fire" "map" "sea" "sheep"
-                     "cache" "fleet" "child" "job" "task" "log"]
+                     "cache" "fleet" "child" "job" "task" "log" "hole" "word"]
                   2 ["robot" "robot" "robot" "station" "warehouse" "order" "human" "product" "winter" "summer" "autumn" "picker" "stower" "neighbor"
                      "window" "silence" "apple" "FC"  "mirror" "insect" "water"  "service" "server" "zombie" "woman" "person" "sunset"
                      "flower" "poem" "monkey" "eagle" "surprise" "button" "event" "finger" "machine" "resource" "function" "Kindle" "program"
-                     "model" "virus" "query" "echo" "image" "system" "carton" "movie" "building" "pallet" "garden" "TT" "pipeline" 
+                     "model" "virus" "query" "echo" "image" "system" "carton" "movie" "building" "pallet" "garden" "TT" "pipeline"
                      "coffee" "sticker" "barcode" "laptop" "website" "cable" "worker" "ASIN" "matrix" "scanner" "spirit" "iPad" "tablet"
                      "charger" "robin" "ocean" "river" "password" "module" "laser" "volume" "cuboid" "browser" "region" "mission" "garden" "android"
-                     "AI" "target" "shadow" "blossom" "lily"]
+                     "AI" "target" "shadow" "blossom" "lily" "timestamp" "alarm"]
                   3 ["battery" "computer"  "database" "customer" "conveyor" "mezzanine" "MMA" "manager" "programmer" "factory" "family" "video"
                      "obstacle" "obstruction" "terminal" "restriction" "area"  "company" "credential" "location" "butterfly"]
                   4 ["operator" "fiducial" "associate" "activity" "datacenter"]
@@ -54,24 +54,24 @@
 
 ;; Singular intransitive verbs
 (def verbs-s-intrans-map {
-                          1 ["picks" "stows" "waits" "hides" "stores" "rests" "jumps" "weeps" "howls" "screams" "beeps" "dies" "plays" "hums" "moves" 
+                          1 ["picks" "stows" "waits" "hides" "stores" "rests" "jumps" "weeps" "howls" "screams" "beeps" "dies" "plays" "hums" "moves"
                              "blinks" "sings" "stops" "spins" "drifts" "sits" "glides"  "drives" "walks" "stands" "starves" "sleeps" "dreams" "runs"
                              "smiles"]
                           2 ["listens" "enters" "watches" "twinkles" "echoes" "glimmers" "reboots" "travels" "rotates" "dances" "queues up" "crashes" "charges"
-                             "sneezes" "daydreams" "flickers"]
-                          3 ["navigates" "recovers" "emerges" "is coming" ]
+                             "sneezes" "daydreams" "flickers" "replans"]
+                          3 ["navigates" "recovers" "emerges" "is coming"]
                           4 ["equalizes"]
                           })
 (def verbs-s-intrans (flatten (vals verbs-s-intrans-map)))
 
 ;; singular transitive verbs
 (def verbs-s-trans-map {1 ["picks" "brings" "stows" "eats" "stores" "finds"  "hears" "sees" "loves" "hates" "breaks" "drinks" "counts"
-                            "ships" "scans" "builds"  "lifts" "has" "maps" "tracks" "sends" "plans" "tests" "blocks" "seeks"
-                           "tastes" "kills" "streams"]
+                           "ships" "scans" "builds"  "lifts" "has" "maps" "tracks" "sends" "plans" "tests" "blocks" "seeks"
+                           "tastes" "kills" "streams" "helps"]
                         2 ["orders" "awaits" "gathers" "reboots" "pushes" "commands" "rejects" "carries" "controls" "restricts" "constructs" "designs"
                            "programs" "accesses" "infects" "reflects" "supports" "smells of" "programs" "touches" "obstructs" "queries"
-                           "digs out" "dreams of" "renders" "inspects" "senses" "surrounds" "attacks"]
-                        3 ["notices" "thinks about" "recovers" "contemplates" "manages" "prohibits" "encounters" "searches for"]
+                           "digs out" "dreams of" "renders" "inspects" "senses" "surrounds" "attacks" "transcends" "cancels"]
+                        3 ["notices" "thinks about" "recovers" "contemplates" "manages" "prohibits" "encounters" "searches for" "delivers"]
                         4 ["consolidates"]
                         })
 (def verbs-s-trans (flatten (vals verbs-s-trans-map)))
@@ -94,7 +94,7 @@
                           1 ["Jeff" "work" "Ops"  "snow" "air" "code" "peak" "Prod" "spring"]
                           2 ["daylight" "hardware" "software" "data" "sunshine" "sunlight" "storage" "the Web" "AR" "QA" "money"
                              "Java" "Apple" "Bezos" "Kiva" "dunnage" "FedEx" "music" "Kobra" "A*" "Nike" "Atlas" "Jira" "Joe Q."
-                             "lightning" "Europe" "Coral" "the wind" "Brazil" "Python"] 
+                             "lightning" "Europe" "Coral" "the wind" "Brazil" "Python"]
                           3 ["Amazon" "amnesty" "Apollo" "Seattle" "Hercules" "December" "Cerberus" "Alexa" "IAD"]
                           4 ["inventory" "America" "the Internet" "security" ]
                           } )
@@ -133,6 +133,7 @@
                         "queues up" "queue up"
                         "searches for" "search for"
                         "shelf" "shelves"
+                        "sky" "skies"
                         "smells of" "smell of"
                         "thinks about" "think about"
                         "touches" "touch"
