@@ -38,7 +38,7 @@
                      "noise" "sound" "light" "rain" "ghost" "screen" "sun" "moon" "day" "night" "crow" "man" "friend" "gift" "truck"
                      "phone"  "badge" "face" "file" "house" "rock" "box" "dog" "cat" "cart" "dove" "glove" "cloud" "sky" "cube"
                      "shelf" "bug" "team" "dev" "queue" "Mac" "hand" "aisle" "girl" "boy" "plan" "fire" "map" "sea" "sheep"
-                     "cache" "fleet" "child" "job" "task" "log" "hole" "word"]
+                     "cache" "fleet" "child" "job" "task" "log" "hole" "word" "atom"]
                   2 ["robot" "robot" "robot" "station" "warehouse" "order" "human" "product" "winter" "summer" "autumn" "picker" "stower" "neighbor"
                      "window" "silence" "apple" "FC"  "mirror" "insect" "water"  "service" "server" "zombie" "woman" "person" "sunset"
                      "flower" "poem" "monkey" "eagle" "surprise" "button" "event" "finger" "machine" "resource" "function" "Kindle" "program"
@@ -91,11 +91,11 @@
 ;; Nouns like "daylight" or "Jeff" that don't have plurals and (usually) don't use articles
 ;; (Is there a real name for this part of speech?)
 (def singleton-nouns-map {
-                          1 ["Jeff" "work" "Ops"  "snow" "air" "code" "peak" "Prod" "spring"]
+                          1 ["Jeff" "work" "Ops"  "snow" "air" "code" "peak" "Prod" "spring" "earth"]
                           2 ["daylight" "hardware" "software" "data" "sunshine" "sunlight" "storage" "the Web" "AR" "QA" "money"
                              "Java" "Apple" "Bezos" "Kiva" "dunnage" "FedEx" "music" "Kobra" "A*" "Nike" "Atlas" "Jira" "Joe Q."
-                             "lightning" "Europe" "Coral" "the wind" "Brazil" "Python"]
-                          3 ["Amazon" "amnesty" "Apollo" "Seattle" "Hercules" "December" "Cerberus" "Alexa" "IAD"]
+                             "lightning" "Europe" "Coral" "the wind" "Brazil" "Python" "someone" "no one" ]
+                          3 ["Amazon" "amnesty" "Apollo" "Seattle" "Hercules" "December" "Cerberus" "Alexa" "IAD" "nobody"]
                           4 ["inventory" "America" "the Internet" "security" ]
                           } )
 (def singleton-nouns (flatten (vals singleton-nouns-map)))

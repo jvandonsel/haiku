@@ -46,20 +46,20 @@
 (def noun-phrase-singular        [[:choose-1 articles] [:opt [:choose-1 adjectives]] [:choose-1 nouns-s]])
 (def noun-phrase-singleton       [:choose-1 singleton-nouns])
 (def noun-phrase-plural          [[:opt [:choose-1 articles-plural]] [:opt [:choose-1 adjectives]] [:choose-1 nouns-p]])
-(def noun-phrase                 [:choose-1-weighted [[0.40 noun-phrase-singular] [0.40 noun-phrase-plural] [0.2 noun-phrase-singleton]]])
+(def object-phrase               [:choose-1-weighted [[0.40 noun-phrase-singular] [0.40 noun-phrase-plural] [0.2 noun-phrase-singleton]]])
                                  
-(def verb-phrase-sing-trans      [[:choose-1 verbs-s-trans] noun-phrase [:opt [:choose-1 adverbs]]])
+(def verb-phrase-sing-trans      [[:choose-1 verbs-s-trans] object-phrase [:opt [:choose-1 adverbs]]])
 (def verb-phrase-sing-intrans    [[:choose-1 verbs-s-intrans] [:opt [:choose-1 adverbs]]])
 (def verb-phrase-sing            [:choose-1 [verb-phrase-sing-trans verb-phrase-sing-intrans]])
 
-(def verb-phrase-plural-trans    [[:choose-1 verbs-p-trans] noun-phrase])
+(def verb-phrase-plural-trans    [[:choose-1 verbs-p-trans] object-phrase])
 (def verb-phrase-plural-intrans  [:choose-1 verbs-p-intrans])
 (def verb-phrase-plural          [:choose-1 [verb-phrase-plural-trans verb-phrase-plural-intrans]])
 
-(def line-recipe                 [:choose-1 [[noun-phrase-singular verb-phrase-sing]
+(def line-recipe                 [:choose-1 [
+                                             [noun-phrase-singular verb-phrase-sing]
                                              [noun-phrase-plural verb-phrase-plural]
-                                             ;;[noun-phrase-singleton]
-                                             ;;[noun-phrase-plural]
+                                             [noun-phrase-singleton verb-phrase-sing]
                                              ]])
 
 
@@ -170,9 +170,7 @@
                    (let
                        [
                         done (>= i (dec n))
-                        next-val (if done
-                                   nil
-                                   (nth line (inc i)))
+                        next-val (when-not done (nth line (inc i)))
                         ]
                      (if (= "a" val)
                        (if (needs-an next-val)
@@ -182,14 +180,27 @@
                      )) line )
     ))
 
+
+ 
+;; Capitalizes the first letter of a word
+;; (Don't use str/capitalize. It munges the case of the other letters)
+(defn capitalize-word [word]
+  (let [first-letter (first word)
+        ]
+    (str/join (cons (str/upper-case first-letter) (rest word)))
+    )
+  )
+
 ;; Capitalizes the first word in a line
 (defn capitalize-line [words]
   (let [
-        updated-word (str/capitalize (first words))
+        updated-word (capitalize-word (first words))
+        capitalized (cons updated-word (rest words))
         ]
-    (cons updated-word (rest words))
+    capitalized
     )
   )
+
 
 ;; Some post-processing after creating our haiku
 (defn post-process-line [line]
