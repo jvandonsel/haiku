@@ -182,21 +182,12 @@
                      )) line )
     ))
 
-;; Capitalizes the first letter of a word
-(defn capitalize-word [word]
-  (let [first-letter (first word)
-        ]
-    (str/join (cons (str/upper-case first-letter) (rest word)))
-    )
-  )
-
 ;; Capitalizes the first word in a line
 (defn capitalize-line [words]
   (let [
-        updated-word (capitalize-word (first words))
-        capitalized (cons updated-word (rest words))
+        updated-word (str/capitalize (first words))
         ]
-    capitalized
+    (cons updated-word (rest words))
     )
   )
 
