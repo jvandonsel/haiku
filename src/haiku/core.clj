@@ -41,9 +41,6 @@
 (def nouns-p-map         (update-map nouns-s-map         pluralize-noun) )
 (def nouns-p             (flatten (vals nouns-p-map)))
 
-;; Returns true with a probability of p
-(defn randy [p]
-  (< (rand) p ))
 
 ;; Chooses a random element from coll
 (defn CHOOSE-1 [coll]
@@ -63,19 +60,20 @@
     )
   )
 
-;; randomly either returns the given argument or ""
-(defn OPT [x]
-  (if (randy 0.33) x "") )
+;; randomly either returns x or "".
+;; p is probability of ""
+(defn OPT [p x]
+  (if (< (rand) p) x "") )
 
 
-;;; Grammar
-(defn gram-noun-phrase-singular       []  [(CHOOSE-1 articles) (OPT (CHOOSE-1 adjectives)) (CHOOSE-1 nouns-s)])
+;; Grammar
+(defn gram-noun-phrase-singular       []  [(CHOOSE-1 articles) (OPT 0.33 (CHOOSE-1 adjectives)) (CHOOSE-1 nouns-s)])
 (defn gram-noun-phrase-singleton      []  (CHOOSE-1 singleton-nouns))
-(defn gram-noun-phrase-plural         []  [(OPT (CHOOSE-1 articles-plural)) (OPT (CHOOSE-1 adjectives)) (CHOOSE-1 nouns-p)])
+(defn gram-noun-phrase-plural         []  [(OPT 0.33 (CHOOSE-1 articles-plural)) (OPT 0.33 (CHOOSE-1 adjectives)) (CHOOSE-1 nouns-p)])
 (defn gram-object-phrase              []  (CHOOSE-1-WEIGHTED [[0.40 (gram-noun-phrase-singular)] [0.40 (gram-noun-phrase-plural)] [0.2 (gram-noun-phrase-singleton)]]))
 
-(defn gram-verb-phrase-sing-trans     []  [(CHOOSE-1 verbs-s-trans) (gram-object-phrase) (OPT (CHOOSE-1 adverbs))])
-(defn gram-verb-phrase-sing-intrans   []  [(CHOOSE-1 verbs-s-intrans) (OPT (CHOOSE-1 adverbs))])
+(defn gram-verb-phrase-sing-trans     []  [(CHOOSE-1 verbs-s-trans) (gram-object-phrase) (OPT 0.33 (CHOOSE-1 adverbs))])
+(defn gram-verb-phrase-sing-intrans   []  [(CHOOSE-1 verbs-s-intrans) (OPT 0.33 (CHOOSE-1 adverbs))])
 (defn gram-verb-phrase-sing           []  (CHOOSE-1 [(gram-verb-phrase-sing-trans) (gram-verb-phrase-sing-intrans)]))
 
 (defn gram-verb-phrase-plural-trans   []  [(CHOOSE-1 verbs-p-trans) (gram-object-phrase)])
@@ -151,13 +149,10 @@
 ;; Change 'a' to 'an' if the next word starts with a vowel
 ;; or is in our set of words forced to use "an".
 (defn a-to-an [line]
-  (let [
-        n (count line)
-        ]
+  (let [n (count line)]
     (map-indexed (fn [i val]
                    (let
-                       [
-                        done (>= i (dec n))
+                       [done (>= i (dec n))
                         next-val (when-not done (nth line (inc i)))
                         ]
                      (if (= "a" val)
@@ -165,13 +160,12 @@
                          "an"
                          "a")
                        val)
-                     )) line )
-    ))
+                     )) line )))
 
 
 
 ;; Capitalizes the first letter of a word
-;; (Don't use str/capitalize. It munges the case of the other letters)
+;; (Don't use str/capitalize. It munges the case of the other letters.)
 (defn capitalize-word [word]
   (let [first-letter (first word)
         ]
@@ -198,11 +192,9 @@
         
         ;; change 'a' to 'an' if the next word starts with a vowel
         fixed-articles (a-to-an non-empty)
-
-        ;; capitalize first letter of line
-        capitalized (capitalize-line fixed-articles)
         ]
-    capitalized
+    ;; capitalize first letter of line
+    (capitalize-line fixed-articles)
     ))
 
 ;; Creates a single line from the given grammar function, respecting the syllable target.
@@ -210,6 +202,7 @@
   (let [raw-line (flatten (gram))
         clean-line (post-process-line raw-line)
         k (count-sentence-syllables clean-line)]
+    
     ;; Brute force: if we didn't hit our syllable target, try again!
     (if (= syllable-target k)
       clean-line
