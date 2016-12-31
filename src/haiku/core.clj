@@ -41,26 +41,52 @@
 (def nouns-p-map         (update-map nouns-s-map         pluralize-noun) )
 (def nouns-p             (flatten (vals nouns-p-map)))
 
+;; Returns true with a probability of p
+(defn randy [p]
+  (< (rand) p ))
+
+;; Chooses a random element from coll
+(defn CHOOSE-1 [coll]
+  (rand-nth coll))
+
+;; chooses a random element from xs, where each element of xs contains [probability value]
+(defn CHOOSE-1-WEIGHTED [xs]
+  (let [
+        ;; accumulate the weights
+        stacked (reductions (fn [a b] [(+ (first a) (first b)) (second b)] )  xs)
+        ;; pick a random value between 0.0 and 1.0
+        r (rand)
+        ;; find the first accumulated weight over the random number
+        x (first (filter #(> (first %) r) stacked))
+        ]
+    (second x)
+    )
+  )
+
+;; randomly either returns the given argument or ""
+(defn OPT [x]
+  (if (randy 0.33) x "") )
+
 
 ;;; Grammar
-(def noun-phrase-singular        [[:choose-1 articles] [:opt [:choose-1 adjectives]] [:choose-1 nouns-s]])
-(def noun-phrase-singleton       [:choose-1 singleton-nouns])
-(def noun-phrase-plural          [[:opt [:choose-1 articles-plural]] [:opt [:choose-1 adjectives]] [:choose-1 nouns-p]])
-(def object-phrase               [:choose-1-weighted [[0.40 noun-phrase-singular] [0.40 noun-phrase-plural] [0.2 noun-phrase-singleton]]])
-                                 
-(def verb-phrase-sing-trans      [[:choose-1 verbs-s-trans] object-phrase [:opt [:choose-1 adverbs]]])
-(def verb-phrase-sing-intrans    [[:choose-1 verbs-s-intrans] [:opt [:choose-1 adverbs]]])
-(def verb-phrase-sing            [:choose-1 [verb-phrase-sing-trans verb-phrase-sing-intrans]])
+(defn gram-noun-phrase-singular       []  [(CHOOSE-1 articles) (OPT (CHOOSE-1 adjectives)) (CHOOSE-1 nouns-s)])
+(defn gram-noun-phrase-singleton      []  (CHOOSE-1 singleton-nouns))
+(defn gram-noun-phrase-plural         []  [(OPT (CHOOSE-1 articles-plural)) (OPT (CHOOSE-1 adjectives)) (CHOOSE-1 nouns-p)])
+(defn gram-object-phrase              []  (CHOOSE-1-WEIGHTED [[0.40 (gram-noun-phrase-singular)] [0.40 (gram-noun-phrase-plural)] [0.2 (gram-noun-phrase-singleton)]]))
 
-(def verb-phrase-plural-trans    [[:choose-1 verbs-p-trans] object-phrase])
-(def verb-phrase-plural-intrans  [:choose-1 verbs-p-intrans])
-(def verb-phrase-plural          [:choose-1 [verb-phrase-plural-trans verb-phrase-plural-intrans]])
+(defn gram-verb-phrase-sing-trans     []  [(CHOOSE-1 verbs-s-trans) (gram-object-phrase) (OPT (CHOOSE-1 adverbs))])
+(defn gram-verb-phrase-sing-intrans   []  [(CHOOSE-1 verbs-s-intrans) (OPT (CHOOSE-1 adverbs))])
+(defn gram-verb-phrase-sing           []  (CHOOSE-1 [(gram-verb-phrase-sing-trans) (gram-verb-phrase-sing-intrans)]))
 
-(def line-recipe                 [:choose-1 [
-                                             [noun-phrase-singular verb-phrase-sing]
-                                             [noun-phrase-plural verb-phrase-plural]
-                                             [noun-phrase-singleton verb-phrase-sing]
-                                             ]])
+(defn gram-verb-phrase-plural-trans   []  [(CHOOSE-1 verbs-p-trans) (gram-object-phrase)])
+(defn gram-verb-phrase-plural-intrans []  (CHOOSE-1 verbs-p-intrans))
+(defn gram-verb-phrase-plural         []  (CHOOSE-1 [(gram-verb-phrase-plural-trans) (gram-verb-phrase-plural-intrans)]))
+
+(defn gram-line [] (CHOOSE-1 [
+                                [(gram-noun-phrase-singular) (gram-verb-phrase-sing)]
+                                [(gram-noun-phrase-plural) (gram-verb-phrase-plural)]
+                                [(gram-noun-phrase-singleton) (gram-verb-phrase-sing)]
+                                ]))
 
 
 ;; Given a scalar k and a collection,
@@ -100,31 +126,6 @@
                 {"an" 1}
                 ))
 
-;; Returns true with a probability of p
-(defn randy [p]
-  (< (rand) p ))
-
-;; Chooses a random element from coll
-(defn choose-1 [coll]
-  (rand-nth coll))
-
-;; chooses a random element from xs, where each element of xs contains [probability value]
-(defn choose-1-weighted [xs]
-  (let [
-        ;; accumulate the weights
-        stacked (reductions (fn [a b] [(+ (first a) (first b)) (second b)] )  xs)
-        ;; pick a random value between 0.0 and 1.0
-        r (rand)
-        ;; find the first accumulated weight over the random number
-        x (first (filter #(> (first %) r) stacked))
-        ]
-    (second x)
-    )
-  )
-
-;; randomly either returns the given argument or ""
-(defn choose-opt [x]
-  (if (randy 0.33) x "") )
 
 ;; Returns the number of syllables for the given word
 (defn get-syllables [word]
@@ -136,19 +137,6 @@
 ;; Count the number of syllables in a sentence (a list of words)
 (defn count-sentence-syllables [words]
   (reduce + 0 (map get-syllables words)))
-
-;; applies a grammar recipe
-(defn assemble [recipe]
-  (let []
-    (cond
-      (not (coll? recipe))                  recipe
-      (= (first recipe) :choose-1)          (recur (apply choose-1 (rest recipe)) )
-      (= (first recipe) :choose-1-weighted) (recur (apply choose-1-weighted (rest recipe)) )
-      (= (first recipe) :opt)               (recur (choose-opt (rest recipe)) )
-      :default                              (map assemble  recipe)
-      )
-    )
-  )
 
 (defn starts-with-vowel [word]
   (contains? #{"a" "e" "i" "o" "u"} (str/lower-case (first word))))
@@ -181,7 +169,7 @@
     ))
 
 
- 
+
 ;; Capitalizes the first letter of a word
 ;; (Don't use str/capitalize. It munges the case of the other letters)
 (defn capitalize-word [word]
@@ -217,24 +205,24 @@
     capitalized
     ))
 
-;; Creates a single line from the given recipe, respecting the syllable target.
-(defn create-line [recipe syllable-target]
-  (let [raw-line (flatten (assemble recipe))
+;; Creates a single line from the given grammar function, respecting the syllable target.
+(defn create-line [gram syllable-target]
+  (let [raw-line (flatten (gram))
         clean-line (post-process-line raw-line)
         k (count-sentence-syllables clean-line)]
     ;; Brute force: if we didn't hit our syllable target, try again!
     (if (= syllable-target k)
       clean-line
-      (recur recipe syllable-target)
+      (recur gram syllable-target)
       )
     ))
 
 ;; Creates a haiku, 3 lines with syllable counts of 5,7,5.
 (defn create-haiku []
   (let [
-        line1 (create-line line-recipe 5)
-        line2 (create-line line-recipe 7)
-        line3 (create-line line-recipe 5)
+        line1 (create-line gram-line 5)
+        line2 (create-line gram-line 7)
+        line3 (create-line gram-line 5)
         ]
     (apply println line1)
     (apply println line2)
