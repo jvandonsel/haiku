@@ -210,17 +210,21 @@
       )
     ))
 
-;; Creates a haiku, 3 lines with syllable counts of 5,7,5.
+; Creates a haiku, 3 lines with syllable counts of 5,7,5.
 (defn create-haiku []
   (let [
         line1 (create-line gram-line 5)
         line2 (create-line gram-line 7)
         line3 (create-line gram-line 5)
         ]
-    (apply println line1)
-    (apply println line2)
-    (apply println line3)
+    (list (str/join " " line1)
+          (str/join " " line2)
+          (str/join " " line3))
+
     ))
 
+;; Prints out each haiku line 
 (defn -main []
-  (create-haiku))
+  (doall (map println  (create-haiku)))
+  nil
+  )
