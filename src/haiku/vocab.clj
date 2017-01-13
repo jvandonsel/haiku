@@ -8,17 +8,17 @@
 ;; Adjectives
 (def adjectives-map {
                      ;; 1-syllable words
-                     1  ["strange" "green" "hot" "cold" "small" "large" "wide" "light" "strong" "weak" "dark" "black" "white" "glass" "deep" "red" "blue"
-                         "green" "quick" "wild" "strange" "fat" "twin" "sweet"]
-                     ;; 2-syllable words
+                     1  ["strange" "green" "hot" "cold" "small" "large" "wide" "light" "strong" "weak" "dark" "glass" "deep" "red" "blue"
+                         "green" "quick" "wild" "strange" "fat" "twin" "sweet" "blocked" "smart" "free"]
+                      ;; 2-syllable words
                      2 ["happy"   "snowy" "speedy" "noisy" "steady" "heavy" "crazy" "random" "laden" "metal" "mindless" "liquid" "yellow" "naked" "simple"
                         "baby" "mobile" "lazy" "shiny" "orange" "oblique" "conjoined" "double" "agile" "master" "insane" "managed" "sleeping" "giant"
-                        "frozen" "streaming" "soggy" "cardboard" "paper"]
+                        "frozen" "streaming" "soggy" "cardboard" "paper" "healthy" "purple" "retail" "hairy" "clever" "useful" "useless" "pretty"]
                      ;; 3-syllable words
                      3 [ "curious" "amazing" "electric" "enormous" "unladen" "important" "recursive" "frictionless" "nuclear" "atomic" "unstable" "parallel"
-                        "linear" "disabled"]
+                        "linear" "disabled" "beautiful"]
                      ;; 4-syllable words
-                     4 ["interesting" "electronic" "impossible"]
+                     4 ["interesting" "electronic" "impossible" "automatic"]
                      ;; 5-syllable words
                      5 ["battery-powered"]
                      })
@@ -27,7 +27,7 @@
 ;; Adverbs
 (def adverbs-map {1 ["now"]
                   2 ["alone" "loudly" "at night" "wildly" "deeply" "daily" "in mist"]
-                  3 ["silently" "patiently" "seamlessly" "quietly" "in silence"]
+                  3 ["silently" "patiently" "seamlessly" "quietly" "in silence" "peacefully" "lazily"]
                   4 ["furiously"]
                   })
 (def adverbs (flatten (vals adverbs-map)))
@@ -38,16 +38,16 @@
                      "noise" "sound" "light" "rain" "ghost" "screen" "sun" "moon" "day" "night" "crow" "man" "friend" "gift" "truck"
                      "phone"  "badge" "face" "file" "house" "rock" "box" "dog" "cat" "cart" "dove" "glove" "cloud" "sky" "cube"
                      "shelf" "bug" "team" "dev" "queue" "Mac" "hand" "aisle" "girl" "boy" "plan" "fire" "map" "sea" "sheep"
-                     "cache" "fleet" "child" "job" "task" "log" "hole" "word" "atom"]
+                     "cache" "fleet" "child" "job" "task" "log" "hole" "word" "atom" "poem" "bit" "byte"]
                   2 ["robot" "robot" "robot" "station" "warehouse" "order" "human" "product" "winter" "summer" "autumn" "picker" "stower" "neighbor"
                      "window" "silence" "apple" "FC"  "mirror" "insect" "water"  "service" "server" "zombie" "woman" "person" "sunset"
-                     "flower" "poem" "monkey" "eagle" "surprise" "button" "event" "finger" "machine" "resource" "function" "Kindle" "program"
+                     "flower"  "monkey" "eagle" "surprise" "button" "event" "finger" "machine" "resource" "function" "Kindle" "program"
                      "model" "virus" "query" "echo" "image" "system" "carton" "movie" "building" "pallet" "garden" "TT" "pipeline"
-                     "coffee" "sticker" "barcode" "laptop" "website" "cable" "worker" "ASIN" "matrix" "scanner" "spirit" "iPad" "tablet"
+                     "sticker" "barcode" "laptop" "website" "cable" "worker" "ASIN" "matrix" "scanner" "spirit" "iPad" "tablet"
                      "charger" "robin" "ocean" "river" "password" "module" "laser" "volume" "cuboid" "browser" "region" "mission" "garden" "android"
-                     "AI" "target" "shadow" "blossom" "lily" "timestamp" "alarm"]
+                     "AI" "target" "shadow" "blossom" "lily" "timestamp" "alarm" "t-shirt"]
                   3 ["battery" "computer"  "database" "customer" "conveyor" "mezzanine" "MMA" "manager" "programmer" "factory" "family" "video"
-                     "obstacle" "obstruction" "terminal" "restriction" "area"  "company" "credential" "location" "butterfly"]
+                     "obstacle" "obstruction" "terminal" "restriction" "area"  "company" "credential" "location" "butterfly" "prohibit"]
                   4 ["operator" "fiducial" "associate" "activity" "datacenter"]
                   })
 (def nouns-s (flatten (vals nouns-s-map)))
@@ -56,10 +56,10 @@
 (def verbs-s-intrans-map {
                           1 ["picks" "stows" "waits" "hides" "stores" "rests" "jumps" "weeps" "howls" "screams" "beeps" "dies" "plays" "hums" "moves"
                              "blinks" "sings" "stops" "spins" "drifts" "sits" "glides"  "drives" "walks" "stands" "starves" "sleeps" "dreams" "runs"
-                             "smiles"]
+                             "smiles" "thinks" "cries" "hopes"  "wakes" "laughs" "shines"]
                           2 ["listens" "enters" "watches" "twinkles" "echoes" "glimmers" "reboots" "travels" "rotates" "dances" "queues up" "crashes" "charges"
-                             "sneezes" "daydreams" "flickers" "replans"]
-                          3 ["navigates" "recovers" "emerges" "is coming"]
+                             "sneezes" "daydreams" "flickers" "replans" "cries out" "arrives" "hiccups" "rolls by" "appears" "sparkles"]
+                          3 ["navigates" "recovers" "emerges" "is coming" "understands" "remembers" "disappears"]
                           4 ["equalizes"]
                           })
 (def verbs-s-intrans (flatten (vals verbs-s-intrans-map)))
@@ -67,11 +67,11 @@
 ;; singular transitive verbs
 (def verbs-s-trans-map {1 ["picks" "brings" "stows" "eats" "stores" "finds"  "hears" "sees" "loves" "hates" "breaks" "drinks" "counts"
                            "ships" "scans" "builds"  "lifts" "has" "maps" "tracks" "sends" "plans" "tests" "blocks" "seeks"
-                           "tastes" "kills" "streams" "helps"]
+                           "tastes" "kills" "streams" "helps" "moves" "Skypes"]
                         2 ["orders" "awaits" "gathers" "reboots" "pushes" "commands" "rejects" "carries" "controls" "restricts" "constructs" "designs"
                            "programs" "accesses" "infects" "reflects" "supports" "smells of" "programs" "touches" "obstructs" "queries"
-                           "digs out" "dreams of" "renders" "inspects" "senses" "surrounds" "attacks" "transcends" "cancels"]
-                        3 ["notices" "thinks about" "recovers" "contemplates" "manages" "prohibits" "encounters" "searches for" "delivers"]
+                           "digs out" "dreams of" "renders" "inspects" "senses" "surrounds" "attacks" "transcends" "cancels" "deploys" ]
+                        3 ["notices" "thinks about" "recovers" "contemplates" "manages" "prohibits" "encounters" "searches for" "delivers" "monitors"]
                         4 ["consolidates"]
                         })
 (def verbs-s-trans (flatten (vals verbs-s-trans-map)))
@@ -80,12 +80,13 @@
 ;; (the repetition is a cheap way of doing weighting)
 (def articles-map {1  ["a" "a" "a" "a" "a" "a" "a" "a" "a" "a" "a" "a" "a" "a" "a" "a" "a" "a" "a" "a" "a" "a" "a" "a"
                        "the" "the" "the" "the" "the" "the" "the" "the" "the" "the" "the" "the" "the" "the" "the" "the" "the" "the"
-                       "their" "my" "Jeff's"]})
+                       "their" "my" "Jeff's" "one"]})
 (def articles (flatten (vals articles-map)))
 
 ;; Plural articles
-(def articles-plural-map {1  ["some" "all" "no" "few"]
-                          2 ["many"]})
+(def articles-plural-map {1  ["some" "all" "no" "few" "two"]
+                          2 ["many"]
+                          3 ["a thousand"]})
 (def articles-plural (flatten (vals articles-plural-map)))
 
 ;; Nouns like "daylight" or "Jeff" that don't have plurals and (usually) don't use articles
@@ -94,7 +95,8 @@
                           1 ["Jeff" "work" "Ops"  "snow" "air" "code" "peak" "Prod" "spring" "earth"]
                           2 ["daylight" "hardware" "software" "data" "sunshine" "sunlight" "storage" "the Web" "AR" "QA" "money"
                              "Java" "Apple" "Bezos" "Kiva" "dunnage" "FedEx" "music" "Kobra" "A*" "Nike" "Atlas" "Jira" "Joe Q."
-                             "lightning" "Europe" "Coral" "the wind" "Brazil" "Python" "someone" "no one" ]
+                             "lightning" "Europe" "Coral" "the wind" "Brazil" "Python" "someone" "no one" "Linux" "morning"
+                             "coffee"]
                           3 ["Amazon" "amnesty" "Apollo" "Seattle" "Hercules" "December" "Cerberus" "Alexa" "IAD" "nobody"]
                           4 ["inventory" "America" "the Internet" "security" ]
                           } )
@@ -114,6 +116,8 @@
                         "child" "children"
                         "company" "companies"
                         "crashes" "crash"
+                        "cries" "cry"
+                        "cries out" "cry out"
                         "digs out" "dig out"
                         "dreams of" "dream of"
                         "echo" "echoes" ; noun
@@ -131,6 +135,7 @@
                         "queries" "query" ; verb
                         "query" "queries" ; noun
                         "queues up" "queue up"
+                        "rolls by" "roll by"
                         "searches for" "search for"
                         "shelf" "shelves"
                         "sky" "skies"
